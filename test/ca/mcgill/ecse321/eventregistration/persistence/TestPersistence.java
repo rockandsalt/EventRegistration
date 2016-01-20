@@ -90,9 +90,9 @@ public class TestPersistence {
 		Time startTime = new Time(c.getTimeInMillis());
 		c.set(2015, Calendar.SEPTEMBER,15, 10, 0,0);
 		Time endTime = new Time(c.getTimeInMillis());
-		assertEquals(eventDate.toString(),rm.getEvent(0).getEventDate());
-		assertEquals(startTime.toString(), rm.getEvent(0).getStartTime());
-		assertEquals(endTime.toString(), rm.getEvent(0).getEndTime());
+		assertEquals(eventDate.toString(),rm.getEvent(0).getEventDate().toString());
+		assertEquals(startTime.toString(), rm.getEvent(0).getStartTime().toString());
+		assertEquals(endTime.toString(), rm.getEvent(0).getEndTime().toString());
 		
 		assertEquals(2, rm.getRegistrations().size());
 		assertEquals(rm.getEvent(0), rm.getRegistration(0).getEvent());
