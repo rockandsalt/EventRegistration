@@ -30,13 +30,7 @@ public class TestEventRegistrationController {
 		
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
-	@Before
-	public void setUp() throws Exception {
-	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -44,16 +38,92 @@ public class TestEventRegistrationController {
 		rm.delete();
 	}
 
+	@Test 
+	public void testCreateParticipantNull()
+	{
+		RegistrationManager rm = RegistrationManager.getInstance();
+		assertEquals(0, rm.getParticipants().size());
+		
+		String name = null;
+		
+		String error = null;
+		EventRegistrationController erc = new EventRegistrationController();
+		
+		try {
+			erc.createParticipant(name);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			error = e.getMessage();
+		}
+		
+		assertEquals("Participant name cannot be empty!",error);
+		
+		assertEquals(0,rm.getParticipants().size());
+		
+		
+	}
 	
 	@Test
-	public void test() {
+	public void testCreateParticipantEmpty()
+	{
+		RegistrationManager rm = RegistrationManager.getInstance();
+		assertEquals(0, rm.getParticipants().size());
+		
+		String name = "";
+		
+		String error = null;
+		
+		EventRegistrationController erc = new EventRegistrationController();
+		
+		try {
+			erc.createParticipant(name);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			error = e.getMessage();
+		}
+		
+		assertEquals("Participant name cannot be empty!", error);
+		assertEquals(0, rm.getParticipants().size());
+		
+		
+	}
+	
+	@Test
+	public void testCreateParticipantSpaces()
+	{
+		RegistrationManager rm = RegistrationManager.getInstance();
+		assertEquals(0, rm.getParticipants().size());
+		
+		String name = " ";
+		
+		String error = null;
+		EventRegistrationController erc = new EventRegistrationController();
+		
+		try {
+			erc.createParticipant(name);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			error = e.getMessage();
+		}
+		assertEquals("Participant name cannot be empty!", error);
+		
+		assertEquals(0, rm.getParticipants().size());
+		
+	}
+	
+	@Test
+	public void testCreateParticipant() {
 		RegistrationManager rm = RegistrationManager.getInstance();
 		assertEquals(0, rm.getParticipants().size());
 		
 		String name = "Oscar";
 		
 		EventRegistrationController erc = new EventRegistrationController();
-		erc.createParticipant(name);
+		try {
+			erc.createParticipant(name);
+		} catch (InvalidInputException e) {
+			fail();
+		}
 		
 		//check model memory
 		assertEquals(1, rm.getParticipants().size());
