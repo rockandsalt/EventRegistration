@@ -55,7 +55,7 @@ public class TestPersistence {
 	public void test() {
 		
 		RegistrationManager rm = RegistrationManager.getInstance();
-		PersistenceXstream.setFilename("test"+File.separator+"ca"+File.separator+"mcgill"+File.separator+"ecse321"+File.separator+"event"
+		PersistenceXstream.setFilename("test"+File.separator+"ca"+File.separator+"mcgill"+File.separator+"ecse321"+File.separator+"eventregistration"
 				+File.separator+"persistence"+File.separator+"data.xml");
 		PersistenceXstream.setAlias("event", Event.class);
 		PersistenceXstream.setAlias("participant", Participant.class);
@@ -67,7 +67,15 @@ public class TestPersistence {
 			fail("could not save your file");
 		}
 		
+		
 		rm.delete();
+		assertEquals(0,rm.getParticipants().size());
+		assertEquals(0, rm.getEvents().size());
+		assertEquals(0,rm.getRegistrations().size());
+		
+		rm = (RegistrationManager) PersistenceXstream.loadFromXMLwithXStream();
+		
+		if(rm == null){fail("could not load file");}
 		
 		assertEquals(2,rm.getParticipants().size());
 		assertEquals("Martin", rm.getParticipant(0).getName());
@@ -80,7 +88,7 @@ public class TestPersistence {
 		c.set(2015, Calendar.SEPTEMBER, 15, 8 , 30,0);
 		Date eventDate = new Date(c.getTimeInMillis());
 		Time startTime = new Time(c.getTimeInMillis());
-		c.set(2015, Calendar.SEPTEMBER,15, 0, 0,0);
+		c.set(2015, Calendar.SEPTEMBER,15, 10, 0,0);
 		Time endTime = new Time(c.getTimeInMillis());
 		assertEquals(eventDate.toString(),rm.getEvent(0).getEventDate());
 		assertEquals(startTime.toString(), rm.getEvent(0).getStartTime());
