@@ -28,17 +28,19 @@ public class PersistenceEventRegistration {
 		if(rm2 != null)
 		{
 			Iterator<Participant> pIt = rm2.getParticipants().iterator();
-		while( pIt.hasNext())
-			rm.addParticipant(pIt.next());
+			while( pIt.hasNext())
+				rm.addParticipant(pIt.next());
+			
+			
+			Iterator<Event> eIt = rm2.getEvents().iterator();
+			
+			while(eIt.hasNext())
+				rm.addEvent(eIt.next());
+			Iterator<Registration> rIt = rm2.getRegistrations().iterator();
+			while(rIt.hasNext())
+				rm.addRegistration(rIt.next());
+			
 		}
-		
-		Iterator<Event> eIt = rm2.getEvents().iterator();
-		
-		while(eIt.hasNext())
-			rm.addEvent(eIt.next());
-		Iterator<Registration> rIt = rm2.getRegistrations().iterator();
-		while(rIt.hasNext())
-			rm.addRegistration(rIt.next());
 	}
 	
 	

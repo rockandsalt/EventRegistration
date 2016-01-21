@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.eventregistration.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 
@@ -21,15 +22,16 @@ import javax.swing.SwingConstants;
 
 public class EventRegistrationPage extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7728776519554488404L;
-	private JPanel contentPane;
+	private static final long serialVersionUID = 4044106250878687576L;
+	
+	private JLabel errorMessage;
 	private JTextField participantNameTextField;
 	private JLabel participantNameLabel;
 	private JButton addParticipantButton;
 
+	
+	private String error = null;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -43,6 +45,10 @@ public class EventRegistrationPage extends JFrame {
 	 * Create the frame.
 	 */
 	private void initComponents() {
+		
+		errorMessage = new JLabel();
+		errorMessage.setForeground(Color.RED);
+		
 		
 		participantNameTextField = new JTextField();
 		participantNameLabel = new JLabel("Name:");
@@ -63,17 +69,20 @@ public class EventRegistrationPage extends JFrame {
 		layout.setAutoCreateGaps(true);
 		layout.setAutoCreateContainerGaps(true);
 		layout.setHorizontalGroup(
-				layout.createSequentialGroup()
+				layout.createParallelGroup()
+				.addComponent(errorMessage)
+				.addGroup(layout.createSequentialGroup()
 				.addComponent(participantNameLabel)
 				.addGroup(layout.createParallelGroup()
 						.addComponent(participantNameTextField, 200,200,400)
-						.addComponent(addParticipantButton))			
+						.addComponent(addParticipantButton)))			
 	    );
 		
 		layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {addParticipantButton,participantNameTextField});
 		
 		layout.setVerticalGroup(
 			layout.createSequentialGroup()
+			.addComponent(errorMessage)
 			.addGroup(layout.createParallelGroup()
 					.addComponent(participantNameLabel)
 					.addComponent(participantNameTextField))
@@ -86,14 +95,16 @@ public class EventRegistrationPage extends JFrame {
 	}
 	
 	private void AddParticipantButtonActionPerformed(ActionEvent evt) {
-		// TODO Auto-generated method stub
+		
 		EventRegistrationController erc = new EventRegistrationController();
+		
+		error = null;
 		
 		try {
 			erc.createParticipant(participantNameTextField.getText());
 		} catch (InvalidInputException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			error = e.getMessage();
 		}
 		
 		refreshData();
@@ -101,9 +112,12 @@ public class EventRegistrationPage extends JFrame {
 	
 	
 	private void refreshData() {
+		
+		errorMessage.setText(error);
 		// TODO Auto-generated method stub
 		participantNameTextField.setText("");
 		
+		pack();
 	}
 	
 }
