@@ -14,19 +14,19 @@ import ca.mcgill.ecse321.eventregistration.model.Event;
 import ca.mcgill.ecse321.eventregistration.model.Participant;
 import ca.mcgill.ecse321.eventregistration.model.Registration;
 import ca.mcgill.ecse321.eventregistration.model.RegistrationManager;
-import ca.mcgill.ecse321.eventregistration.persistence.PersistenceXstream;
+import ca.mcgill.ecse321.eventregistration.persistence.PersistenceXStream;
 
 public class TestEventRegistrationController {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		
-		PersistenceXstream.setFilename("test"+File.separator+"ca"+File.separator+"mcgill"+File.separator+"ecse321"+File.separator+"eventregistration"
+		PersistenceXStream.setFilename("test"+File.separator+"ca"+File.separator+"mcgill"+File.separator+"ecse321"+File.separator+"eventregistration"
 				+File.separator+"controller"+File.separator+"data.xml");
-		PersistenceXstream.setAlias("event", Event.class);
-		PersistenceXstream.setAlias("participant", Participant.class);
-		PersistenceXstream.setAlias("registration", Registration.class);
-		PersistenceXstream.setAlias("manager", Registration.class);
+		PersistenceXStream.setAlias("event", Event.class);
+		PersistenceXStream.setAlias("participant", Participant.class);
+		PersistenceXStream.setAlias("registration", Registration.class);
+		PersistenceXStream.setAlias("manager", Registration.class);
 		
 	}
 
@@ -131,7 +131,7 @@ public class TestEventRegistrationController {
 		assertEquals(0 , rm.getEvents().size());
 		assertEquals(0, rm.getRegistrations().size());
 		
-		RegistrationManager rm2 = (RegistrationManager) PersistenceXstream.loadFromXMLwithXStream();
+		RegistrationManager rm2 = (RegistrationManager) PersistenceXStream.loadFromXMLwithXStream();
 		
 		assertEquals(1 ,rm2.getParticipants().size());
 		assertEquals(name, rm2.getParticipant(0).getName());

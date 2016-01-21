@@ -2,7 +2,7 @@ package ca.mcgill.ecse321.eventregistration.controller;
 
 import ca.mcgill.ecse321.eventregistration.model.Participant;
 import ca.mcgill.ecse321.eventregistration.model.RegistrationManager;
-import ca.mcgill.ecse321.eventregistration.persistence.PersistenceXstream;
+import ca.mcgill.ecse321.eventregistration.persistence.PersistenceXStream;
 
 public class EventRegistrationController {
 	
@@ -18,7 +18,7 @@ public class EventRegistrationController {
 		Participant p = new Participant(name);
 		RegistrationManager rm = RegistrationManager.getInstance();
 		rm.addParticipant(p);
-		PersistenceXstream.saveToXMLwithXStream(rm);
+		PersistenceXStream.saveToXMLwithXStream(rm);
 		
 	}
 

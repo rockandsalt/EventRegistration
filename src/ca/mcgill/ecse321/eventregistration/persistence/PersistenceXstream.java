@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.thoughtworks.xstream.XStream;
 
 
-public class PersistenceXstream 
+public class PersistenceXStream 
 {
 	
 	private static XStream xstream = new XStream();

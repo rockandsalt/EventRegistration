@@ -55,14 +55,14 @@ public class TestPersistence {
 	public void test() {
 		
 		RegistrationManager rm = RegistrationManager.getInstance();
-		PersistenceXstream.setFilename("test"+File.separator+"ca"+File.separator+"mcgill"+File.separator+"ecse321"+File.separator+"eventregistration"
+		PersistenceXStream.setFilename("test"+File.separator+"ca"+File.separator+"mcgill"+File.separator+"ecse321"+File.separator+"eventregistration"
 				+File.separator+"persistence"+File.separator+"data.xml");
-		PersistenceXstream.setAlias("event", Event.class);
-		PersistenceXstream.setAlias("participant", Participant.class);
-		PersistenceXstream.setAlias("registration", Registration.class);
-		PersistenceXstream.setAlias("manager", Registration.class);
+		PersistenceXStream.setAlias("event", Event.class);
+		PersistenceXStream.setAlias("participant", Participant.class);
+		PersistenceXStream.setAlias("registration", Registration.class);
+		PersistenceXStream.setAlias("manager", Registration.class);
 		
-		if(!PersistenceXstream.saveToXMLwithXStream(rm))
+		if(!PersistenceXStream.saveToXMLwithXStream(rm))
 		{
 			fail("could not save your file");
 		}
@@ -73,7 +73,7 @@ public class TestPersistence {
 		assertEquals(0, rm.getEvents().size());
 		assertEquals(0,rm.getRegistrations().size());
 		
-		rm = (RegistrationManager) PersistenceXstream.loadFromXMLwithXStream();
+		rm = (RegistrationManager) PersistenceXStream.loadFromXMLwithXStream();
 		
 		if(rm == null){fail("could not load file");}
 		
