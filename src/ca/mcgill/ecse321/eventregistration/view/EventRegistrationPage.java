@@ -103,7 +103,6 @@ public class EventRegistrationPage extends JFrame {
 		try {
 			erc.createParticipant(participantNameTextField.getText());
 		} catch (InvalidInputException e) {
-			// TODO Auto-generated catch block
 			error = e.getMessage();
 		}
 		
@@ -114,7 +113,6 @@ public class EventRegistrationPage extends JFrame {
 	private void refreshData() {
 		
 		errorMessage.setText(error);
-		// TODO Auto-generated method stub
 		participantNameTextField.setText("");
 		
 		pack();
