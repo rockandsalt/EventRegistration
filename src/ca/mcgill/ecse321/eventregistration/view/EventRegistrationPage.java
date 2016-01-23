@@ -190,6 +190,7 @@ public class EventRegistrationPage extends JFrame {
 								.addComponent(registerButton)
 								.addComponent(participantNameLabel))
 						.addGroup(layout.createParallelGroup()
+								.addComponent(participantList)
 								.addComponent(participantNameTextField,200,200,400)
 								.addComponent(addParticipantButton))
 						.addGroup(layout.createParallelGroup()
@@ -207,9 +208,8 @@ public class EventRegistrationPage extends JFrame {
 								.addComponent(addEventButton)))
 				);
 						
-	
-		layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {addParticipantButton,participantNameTextField});
 		layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {registerButton,participantLabel});
+		layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {addParticipantButton,participantNameTextField});
 		layout.linkSize(SwingConstants.HORIZONTAL, new Component[] {addEventButton,eventNameTextField});
 		
 		
@@ -217,7 +217,7 @@ public class EventRegistrationPage extends JFrame {
 			layout.createSequentialGroup()
 			.addComponent(errorMessage)
 			.addGroup(layout.createParallelGroup()
-					.addComponent(participantNameLabel)
+					.addComponent(participantLabel)
 					.addComponent(participantList)
 					.addComponent(eventLabel)
 					.addComponent(eventList))
